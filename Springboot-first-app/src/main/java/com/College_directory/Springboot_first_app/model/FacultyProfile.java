@@ -1,6 +1,7 @@
 package com.College_directory.Springboot_first_app.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,6 +11,7 @@ import lombok.Data;
 @Table(name = "facultyprofile")
 public class FacultyProfile {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @OneToOne

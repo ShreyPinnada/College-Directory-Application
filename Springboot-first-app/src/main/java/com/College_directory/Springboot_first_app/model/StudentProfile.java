@@ -2,6 +2,7 @@ package com.College_directory.Springboot_first_app.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -26,4 +27,9 @@ public class StudentProfile {
     private Department department;
 
     private String year;
+
+    public void setUserId(Long Id) {
+        this.Id = Id;
+    }
+
 }

@@ -1,6 +1,9 @@
 package com.College_directory.Springboot_first_app.model;
 
 
+import com.College_directory.Springboot_first_app.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -32,6 +35,3 @@ public class User {
     private String phone;
 }
 
-enum Role {
-    STUDENT, FACULTY_MEMBER, ADMINISTRATOR
-}

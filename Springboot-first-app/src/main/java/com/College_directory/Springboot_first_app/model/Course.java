@@ -24,4 +24,11 @@ public class Course {
     @ManyToOne
     @JoinColumn(name = "faculty_id", nullable = false)
     private FacultyProfile faculty;
+
+    public void setFacultyId(Long facultyId) {
+    }
+
+    public void setDepartmentId(Long departmentId) {
+
+    }
 }
