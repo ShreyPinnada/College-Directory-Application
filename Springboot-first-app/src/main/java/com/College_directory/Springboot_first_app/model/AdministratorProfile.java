@@ -9,7 +9,7 @@ import lombok.Data;
 @Table(name = "administratorprofile")
 public class AdministratorProfile {
     @Id
-    private Long userId;
+    private Long Id;
 
     @OneToOne
     @MapsId

@@ -10,7 +10,7 @@ import lombok.Data;
 @Table(name = "facultyprofile")
 public class FacultyProfile {
     @Id
-    private Long userId;
+    private Long Id;
 
     @OneToOne
     @MapsId

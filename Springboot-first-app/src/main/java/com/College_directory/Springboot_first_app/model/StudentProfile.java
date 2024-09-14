@@ -4,7 +4,7 @@ package com.College_directory.Springboot_first_app.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.apache.catalina.User;
+
 
 
 @Data
@@ -12,7 +12,7 @@ import org.apache.catalina.User;
 @Table(name = "studentprofile")
 public class StudentProfile {
     @Id
-    private Long userId;
+    private Long Id;
 
     @OneToOne
     @MapsId
