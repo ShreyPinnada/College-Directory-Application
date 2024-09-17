@@ -1,8 +1,12 @@
 package com.College_directory.Springboot_first_app.service.implement;
 
-import com.College_directory.Springboot_first_app.dto.AdministratorProfileDTO;
+import com.College_directory.Springboot_first_app.dto.user.AdministratorProfileDTO;
 import com.College_directory.Springboot_first_app.model.AdministratorProfile;
+import com.College_directory.Springboot_first_app.model.Department;
+import com.College_directory.Springboot_first_app.model.User;
 import com.College_directory.Springboot_first_app.repository.AdministratorProfileRepository;
+import com.College_directory.Springboot_first_app.repository.DepartmentRepository;
+import com.College_directory.Springboot_first_app.repository.UserRepository;
 import com.College_directory.Springboot_first_app.service.AdministratorProfileInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,21 +15,37 @@ import java.util.List;
 
 @Service
 public class AdministratorServiceImplement implements AdministratorProfileInterface {
+
+    @Autowired
+    private UserRepository userRepository;
+
     @Autowired
     private AdministratorProfileRepository administratorProfileRepository;
 
+    @Autowired
+    private DepartmentRepository departmentRepository;
+
     @Override
     public AdministratorProfile createAdministratorProfile(Long userId, AdministratorProfileDTO administratorProfileDTO) {
-        AdministratorProfile administratorProfile = new AdministratorProfile();
-        administratorProfile.setUserId(userId);
-        administratorProfile.setPhoto(administratorProfileDTO.getPhoto());
-        administratorProfile.setDepartment(administratorProfileDTO.getDepartmentId());
-        return administratorProfileRepository.save(administratorProfile);
+        User existingUser = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + userId));
+        AdministratorProfile existingAdministrator = administratorProfileRepository.getByUser(existingUser);
+        if(existingAdministrator != null){
+            throw new IllegalArgumentException("Administrator with id " + userId + " already exists");
+        }
+        Department department = departmentRepository.findById(administratorProfileDTO.getDepartmentId())
+                .orElseThrow(() -> new IllegalArgumentException("Department with id " + administratorProfileDTO.getDepartmentId() + " does not exist"));
+
+        AdministratorProfile newAdministrator = new AdministratorProfile();
+        newAdministrator.setUser(existingUser);
+        newAdministrator.setPhoto(administratorProfileDTO.getPhoto());
+        newAdministrator.setDepartment(department);
+        return administratorProfileRepository.save(newAdministrator);
     }
 
     @Override
     public AdministratorProfile getAdministratorProfileById(Long userId) {
-        return administratorProfileRepository.findByUserId(userId);
+        return administratorProfileRepository.getByUserId(userId);
     }
 
     @Override
@@ -35,32 +55,26 @@ public class AdministratorServiceImplement implements AdministratorProfileInterf
 
     @Override
     public AdministratorProfile updateAdministratorProfile(Long userId, AdministratorProfileDTO administratorProfileDTO) {
-        AdministratorProfile administratorProfile = getAdministratorProfileById(userId);
-        if (administratorProfile != null) {
-            administratorProfile.setPhoto(administratorProfileDTO.getPhoto());
-            administratorProfile.setDepartmentId(administratorProfileDTO.getDepartmentId());
-            return administratorProfileRepository.save(administratorProfile);
+        AdministratorProfile existingAdministratorProfile = administratorProfileRepository.getByUserId(userId);
+        if(existingAdministratorProfile == null){
+            throw new IllegalArgumentException("Administrator with id " + userId + " does not exist");
         }
-        return null;
-    }
 
-    @Override
-    public AdministratorProfile updateAdministratorPhoto(Long userId, String photoUrl) {
-        AdministratorProfile administratorProfile = getAdministratorProfileById(userId);
-        if (administratorProfile != null) {
-            administratorProfile.setPhoto(photoUrl);
-            return administratorProfileRepository.save(administratorProfile);
+        if(administratorProfileDTO.getPhoto() != null){
+            existingAdministratorProfile.setPhoto(administratorProfileDTO.getPhoto());
         }
-        return null;
+        if(administratorProfileDTO.getDepartmentId() != null){
+            Department department = departmentRepository.findById(administratorProfileDTO.getDepartmentId())
+                    .orElseThrow(() -> new IllegalArgumentException("Department with id " + administratorProfileDTO.getDepartmentId() + " does not exist"));
+            existingAdministratorProfile.setDepartment(department);
+        }
+        return administratorProfileRepository.save(existingAdministratorProfile);
     }
 
     @Override
     public boolean deleteAdministratorProfile(Long userId) {
-        AdministratorProfile administratorProfile = getAdministratorProfileById(userId);
-        if (administratorProfile != null) {
-            administratorProfileRepository.delete(administratorProfile);
-            return true;
-        }
+        AdministratorProfile administratorProfile = administratorProfileRepository.getById(userId);
+        administratorProfileRepository.delete(administratorProfile);
         return false;
     }
 }

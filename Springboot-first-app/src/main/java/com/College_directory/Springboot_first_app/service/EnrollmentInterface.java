@@ -1,12 +1,13 @@
 package com.College_directory.Springboot_first_app.service;
 
+import com.College_directory.Springboot_first_app.dto.enrollment.EnrollmentCreateDTO;
 import com.College_directory.Springboot_first_app.model.Enrollment;
 
 import java.util.List;
 
 public interface EnrollmentInterface {
     // Create
-    Enrollment enrollStudent(Long studentId, Long courseId);
+    Enrollment enrollStudent(Long userId, EnrollmentCreateDTO enrollmentCreateDTO);
 
     // Read
     Enrollment getEnrollmentById(Long id);
@@ -14,5 +15,5 @@ public interface EnrollmentInterface {
     List<Enrollment> getEnrollmentsByCourse(Long courseId);
 
     // Delete
-    boolean unenrollStudent(Long studentId, Long courseId);
+    boolean unEnrollStudent(Long studentId, Long courseId);
 }

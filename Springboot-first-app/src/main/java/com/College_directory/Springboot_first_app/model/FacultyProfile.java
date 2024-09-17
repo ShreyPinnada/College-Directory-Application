@@ -11,8 +11,7 @@ import lombok.Data;
 @Table(name = "facultyprofile")
 public class FacultyProfile {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long userId;
 
     @OneToOne
     @MapsId
@@ -25,5 +24,8 @@ public class FacultyProfile {
     @JoinColumn(name = "department_id", nullable = false)
     private Department department;
 
+    @Column(length = 255)
     private String officeHours;
+
+
 }

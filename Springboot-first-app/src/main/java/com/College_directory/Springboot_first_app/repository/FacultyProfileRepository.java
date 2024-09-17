@@ -1,16 +1,14 @@
 package com.College_directory.Springboot_first_app.repository;
 
+
 import com.College_directory.Springboot_first_app.model.FacultyProfile;
+import com.College_directory.Springboot_first_app.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
+@Repository
 public interface FacultyProfileRepository extends JpaRepository<FacultyProfile, Long> {
-    List<FacultyProfile> findAdvisorsByStudentId(Long userId);
+    FacultyProfile getByUser(User existingUser);
 
-    List<FacultyProfile> findByDepartment_Id(Long userId);
-
-    List<FacultyProfile> findByDepartmentId(Long departmentId);
-
-    List<FacultyProfile> findByDepartment_StudentId(Long studentId);
+    FacultyProfile getByUserId(Long userId);
 }

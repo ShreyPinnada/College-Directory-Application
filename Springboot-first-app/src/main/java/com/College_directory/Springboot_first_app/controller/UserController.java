@@ -1,11 +1,11 @@
 package com.College_directory.Springboot_first_app.controller;
 
-import com.College_directory.Springboot_first_app.dto.UserDTO;
+import com.College_directory.Springboot_first_app.dto.helpers.PasswordChangeDTO;
+import com.College_directory.Springboot_first_app.dto.user.UserCreateDTO;
+import com.College_directory.Springboot_first_app.dto.user.UserUpdateDTO;
 import com.College_directory.Springboot_first_app.model.User;
 import com.College_directory.Springboot_first_app.service.UserServiceInterface;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,31 +17,32 @@ public class UserController {
 
     private final UserServiceInterface userService;
 
-    @Autowired
     public UserController(UserServiceInterface userService) {
         this.userService = userService;
     }
 
-    @PostMapping(
-            value = "/register",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public ResponseEntity<User> registerUser(@RequestBody UserDTO userDTO) {
-        User user = userService.registerUser(userDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    @PostMapping("/create")
+    public ResponseEntity<User> createUser(@RequestBody UserCreateDTO userCreateDTO) {
+        User user = userService.createUser(userCreateDTO);
+        return ResponseEntity.ok(user);
     }
 
-    @GetMapping("/{id}")
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserUpdateDTO userUpdateDTO) {
+        User user = userService.updateUser(id, userUpdateDTO);
+        return ResponseEntity.ok(user);
+    }
+
+    @GetMapping("{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         User user = userService.getUserById(id);
-        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping("/username/{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
         User user = userService.getUserByUsername(username);
-        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping
@@ -50,21 +51,23 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
-        User user = userService.updateUser(id, userDTO);
-        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
-    }
-
-    @PatchMapping("/{id}/change-password")
-    public ResponseEntity<String> changePassword(@PathVariable Long id, @RequestParam String oldPassword, @RequestParam String newPassword) {
-        boolean success = userService.changePassword(id, oldPassword, newPassword);
-        return success ? ResponseEntity.ok("Password updated successfully") : ResponseEntity.badRequest().body("Password update failed");
+    @PutMapping("/{id}/password")
+    public ResponseEntity<String> changePassword(@PathVariable Long id, @RequestBody PasswordChangeDTO passwordChangeDTO) {
+        boolean result = userService.changePassword(id, passwordChangeDTO.getOldPassword(), passwordChangeDTO.getNewPassword());
+        if (result) {
+            return ResponseEntity.ok("Password changed successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password change failed");
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
-        boolean success = userService.deleteUser(id);
-        return success ? ResponseEntity.ok("User deleted successfully") : ResponseEntity.notFound().build();
+        boolean result = userService.deleteUser(id);
+        if (result) {
+            return ResponseEntity.ok("User deleted successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User deletion failed");
+        }
     }
 }

@@ -20,10 +20,4 @@ public class Enrollment {
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
-    public void setStudentId(Long studentId) {
-    }
-
-    public void setCourseId(Long courseId) {
-
-    }
 }

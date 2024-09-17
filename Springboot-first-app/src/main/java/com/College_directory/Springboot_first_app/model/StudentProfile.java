@@ -1,19 +1,14 @@
 package com.College_directory.Springboot_first_app.model;
 
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-
-
 
 @Data
 @Entity
 @Table(name = "studentprofile")
 public class StudentProfile {
     @Id
-    private Long Id;
+    private Long userid;
 
     @OneToOne
     @MapsId
@@ -23,13 +18,9 @@ public class StudentProfile {
     private String photo;
 
     @ManyToOne
-    @JoinColumn(name = "department_id", nullable = false)
+    @JoinColumn(name = "department_id" , nullable = false)
     private Department department;
 
+    @Column(length = 50)
     private String year;
-
-    public void setUserId(Long Id) {
-        this.Id = Id;
-    }
-
 }

@@ -1,16 +1,10 @@
 package com.College_directory.Springboot_first_app.service.implement;
 
-import com.College_directory.Springboot_first_app.dto.DepartmentDTO;
-import com.College_directory.Springboot_first_app.model.Course;
+import com.College_directory.Springboot_first_app.dto.department.DepartmentCreateDTO;
+import com.College_directory.Springboot_first_app.dto.department.DepartmentUpdateDTO;
 import com.College_directory.Springboot_first_app.model.Department;
-import com.College_directory.Springboot_first_app.model.FacultyProfile;
-import com.College_directory.Springboot_first_app.model.StudentProfile;
 import com.College_directory.Springboot_first_app.repository.DepartmentRepository;
-import com.College_directory.Springboot_first_app.repository.StudentProfileRepository;
-import com.College_directory.Springboot_first_app.repository.FacultyProfileRepository;
-import com.College_directory.Springboot_first_app.repository.CourseRepository;
 import com.College_directory.Springboot_first_app.service.DepartmentInterface;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,27 +16,22 @@ public class DepartmentImplement implements DepartmentInterface {
     @Autowired
     private DepartmentRepository departmentRepository;
 
-    @Autowired
-    private StudentProfileRepository studentProfileRepository;
-
-    @Autowired
-    private FacultyProfileRepository facultyProfileRepository;
-
-    @Autowired
-    private CourseRepository courseRepository;
-
-    @Autowired
-    private ModelMapper modelMapper;
-
     @Override
-    public Department createDepartment(DepartmentDTO departmentDTO) {
-        Department department = modelMapper.map(departmentDTO, Department.class);
-        return departmentRepository.save(department);
+    public Department createDepartment(DepartmentCreateDTO departmentCreateDTO) {
+        Department department = departmentRepository.findByName(departmentCreateDTO.getName());
+        if (department != null) {
+            throw new IllegalArgumentException("Department with name " + departmentCreateDTO.getName() + " already exists");
+        }
+        Department newDepartment = new Department();
+        newDepartment.setName(departmentCreateDTO.getName());
+        newDepartment.setDescription(departmentCreateDTO.getDescription());
+        return departmentRepository.save(newDepartment);
     }
 
     @Override
     public Department getDepartmentById(Long id) {
-        return departmentRepository.findById(id).orElse(null);
+        return departmentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Department not found with id: " + id));
     }
 
     @Override
@@ -51,36 +40,26 @@ public class DepartmentImplement implements DepartmentInterface {
     }
 
     @Override
-    public Department updateDepartment(Long id, DepartmentDTO departmentDTO) {
-        Department department = getDepartmentById(id);
-        if (department != null) {
-            modelMapper.map(departmentDTO, department);
-            return departmentRepository.save(department);
+    public Department updateDepartment(Long id, DepartmentUpdateDTO departmentUpdateDTO) {
+        Department department = departmentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Department not found with id: " + id));
+        if (departmentUpdateDTO.getName() != null && !departmentUpdateDTO.getName().equals(department.getName())) {
+            Department existingDepartment = departmentRepository.findByName(departmentUpdateDTO.getName());
+            if (existingDepartment != null) {
+                throw new IllegalArgumentException("Department with name " + departmentUpdateDTO.getName() + " already exists");
+            }
+            department.setName(departmentUpdateDTO.getName());
         }
-        return null;
+        department.setName(departmentUpdateDTO.getName());
+        department.setDescription(departmentUpdateDTO.getDescription());
+        return departmentRepository.save(department);
     }
 
     @Override
     public boolean deleteDepartment(Long id) {
-        if (departmentRepository.existsById(id)) {
-            departmentRepository.deleteById(id);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public List<StudentProfile> getDepartmentStudents(Long departmentId) {
-        return studentProfileRepository.findByDepartmentId(departmentId);
-    }
-
-    @Override
-    public List<FacultyProfile> getDepartmentFaculty(Long departmentId) {
-        return facultyProfileRepository.findByDepartmentId(departmentId);
-    }
-
-    @Override
-    public List<Course> getDepartmentCourses(Long departmentId) {
-        return courseRepository.findByDepartmentId(departmentId);
+        Department department = departmentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Department not found with id: " + id));
+        departmentRepository.delete(department);
+        return true;
     }
 }
