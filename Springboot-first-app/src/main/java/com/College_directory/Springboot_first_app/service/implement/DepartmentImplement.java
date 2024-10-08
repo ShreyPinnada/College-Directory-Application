@@ -43,15 +43,21 @@ public class DepartmentImplement implements DepartmentInterface {
     public Department updateDepartment(Long id, DepartmentUpdateDTO departmentUpdateDTO) {
         Department department = departmentRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Department not found with id: " + id));
-        if (departmentUpdateDTO.getName() != null && !departmentUpdateDTO.getName().equals(department.getName())) {
-            Department existingDepartment = departmentRepository.findByName(departmentUpdateDTO.getName());
-            if (existingDepartment != null) {
-                throw new IllegalArgumentException("Department with name " + departmentUpdateDTO.getName() + " already exists");
+
+        if (departmentUpdateDTO.getName() != null) {
+            if (!departmentUpdateDTO.getName().equals(department.getName())) {
+                Department existingDepartment = departmentRepository.findByName(departmentUpdateDTO.getName());
+                if (existingDepartment != null) {
+                    throw new IllegalArgumentException("Department with name " + departmentUpdateDTO.getName() + " already exists");
+                }
+                department.setName(departmentUpdateDTO.getName());
             }
-            department.setName(departmentUpdateDTO.getName());
         }
-        department.setName(departmentUpdateDTO.getName());
-        department.setDescription(departmentUpdateDTO.getDescription());
+
+        if (departmentUpdateDTO.getDescription() != null) {
+            department.setDescription(departmentUpdateDTO.getDescription());
+        }
+
         return departmentRepository.save(department);
     }
 

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrator</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  </head>
+  <body>
+    <div class="navbar">
+      <div>Administrator</div>
+      <form id="searchForm">
+        <button type="submit" id="dashboardBtn">Dashboard</button>
+      </form>
+    </div>
+    <div id="adminStudentAndFacultyWrapper">
+      <div id="adminStudentList">
+        <label>Student Data</label>
+        <div class="studentCourseList">
+          <!--will be created dynamically-->
+        </div>
+        <div class="addStudent">
+          <button id="addStudentBtn" class="addBtn">+</button>
+        </div>
+      </div>
+
+      <div id="adminFacultyList">
+        <label>Faculty Data</label>
+        <div class="studentCourseList">
+          <!--will be created dynamically-->
+        </div>
+        <div class="addStudent">
+          <button id="addFacultyBtn" class="addBtn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="adminCourseAndDepartmentWrapper">
+      <div id="courseList">
+        <label>Courses</label>
+        <div class="studentCourseList">
+          <!--will be created dynamically-->
+        </div>
+        <div class="addStudent">
+          <button id="addCourseBtn" class="addBtn">+</button>
+        </div>
+      </div>
+
+      <div id="departmentList">
+        <label>Departments</label>
+        <div class="studentCourseList">
+          <!--will be added dynamically-->
+        </div>
+        <div class="addStudent">
+          <button id="addDepartmentBtn" class="addBtn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="CreateStudentProfile">
+      <div id="modalStudent">
+        <div id="modalStudentContent">
+          <span class="close" id="studentClose">&times;</span>
+          <h2>Create Student Profile</h2>
+          <form id="studentProfileForm" class="createUserForm">
+            <input
+              type="email"
+              id="studentEmail"
+              placeholder="Email"
+              required
+            /><br /><br />
+
+            <input
+              type="text"
+              id="studentUsername"
+              placeholder="Username"
+              required
+            /><br /><br />
+
+            <input
+              type="password"
+              id="studentPassword"
+              placeholder="Password"
+              required
+            /><br /><br />
+
+            <input
+              type="text"
+              id="studentName"
+              placeholder="Student Name"
+              required
+            /><br /><br />
+
+            <input
+              type="text"
+              id="studentPhone"
+              placeholder="Phone Number"
+              required
+            /><br /><br />
+
+            <input
+              type="text"
+              id="studentPhotoUrl"
+              placeholder="Photo URL"
+            /><br /><br />
+
+            <input type="text" id="year" placeholder="Year" /><br /><br />
+
+            <input
+              type="text"
+              id="studentDepartmentId"
+              placeholder="Department ID"
+            /><br /><br />
+
+            <label for="courseIds">Course IDs (comma separated):</label>
+            <input
+              type="text"
+              id="courseIds"
+              placeholder="Course IDs"
+            /><br /><br />
+
+            <button type="submit">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="CreateFacultyProfile">
+      <div id="modalFaculty">
+        <div id="modalFacultyContent">
+          <span class="close" id="facultyClose">&times;</span>
+          <h2>Create Faculty Profile</h2>
+          <form id="facultyProfileForm" class="createUserForm">
+            <input
+              type="email"
+              id="facultyEmail"
+              placeholder="Email"
+              required
+            /><br /><br />
+
+            <input
+              type="text"
+              id="facultyUsername"
+              placeholder="Username"
+              required
+            /><br /><br />
+
+            <input
+              type="password"
+              id="facultyPassword"
+              placeholder="Password"
+              required
+            /><br /><br />
+
+            <input
+              type="text"
+              id="facultyName"
+              placeholder="Faculty Name"
+              required
+            /><br /><br />
+
+            <input
+              type="text"
+              id="facultyPhone"
+              placeholder="Phone Number"
+              required
+            /><br /><br />
+
+            <input
+              type="text"
+              id="facultyPhotoUrl"
+              placeholder="Photo URL"
+            /><br /><br />
+
+            <input
+              type="text"
+              id="facultyDepartmentId"
+              placeholder="Department ID"
+            /><br /><br />
+
+            <input type="text" id="officeHours" placeholder="Office Hours" />
+            <br /><br />
+
+            <button type="submit">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="CreateCourse">
+      <div id="modalCourse">
+        <div id="modalCourseContent">
+          <span class="close" id="courseClose">&times;</span>
+          <h2>Create Course</h2>
+          <form id="courseForm" class="createUserForm">
+            <input
+              type="text"
+              id="courseTitle"
+              placeholder="Course title"
+              required
+            /><br /><br />
+            <input
+              type="text"
+              id="courseDescription"
+              placeholder="Course description"
+              required
+            /><br /><br />
+            <input
+              type="text"
+              id="departmentId"
+              placeholder="Associated Department"
+              required
+            /><br /><br />
+            <input
+              type="text"
+              id="facultyId"
+              placeholder="Associated Faculty"
+            /><br /><br />
+            <button type="submit">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="CreateDepartment">
+      <div id="modalDepartment">
+        <div id="modalDepartmentContent">
+          <span class="close" id="departmentClose">&times;</span>
+          <h2>Create Department</h2>
+          <form id="departmentForm" class="createUserForm">
+            <input
+              type="text"
+              id="departmentName"
+              placeholder="Department Name"
+              required
+            /><br /><br />
+            <input
+              type="text"
+              id="departmentDecription"
+              placeholder="Department description"
+              required
+            /><br /><br />
+            <button type="submit">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!--Update student and Faculty-->
+    <div id="UpdateStudentProfile">
+      <div id="modalStudentUpdate">
+        <div id="modalStudentUpdateContent">
+          <span class="close" id="studentUpdateClose">&times;</span>
+          <h2>Update Student Profile</h2>
+          <!--im going to append child form here-->
+          <!--have to implement student unenroll from the course-->
+          <div id="studentUpdateProfileFormContainer"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="UpdateFacultyProfile">
+      <div id="modalFacultyUpdate">
+        <div id="modalFacultyUpdateContent">
+          <span class="close" id="facultyUpdateClose">&times;</span>
+          <h2>Update Faculty Profile</h2>
+          <!--im going to append child form here-->
+          <!--have to implement student unenroll from the course-->
+          <div id="facultyUpdateProfileFormContainer"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="UpdateCourse">
+      <div id="modalCourseUpdate">
+        <div id="modalCourseUpdateContent">
+          <span class="close" id="courseUpdateClose">&times;</span>
+          <h2>Update Course</h2>
+          <!--im going to append child form here-->
+          <!--have to implement student unenroll from the course-->
+          <div id="CourseUpdateProfileFormContainer"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="UpdateDepartment">
+      <div id="modalDepartmentUpdate">
+        <div id="modalDepartmentUpdateContent">
+          <span class="close" id="departmentUpdateClose">&times;</span>
+          <h2>Update Department</h2>
+          <!--im going to append child form here-->
+          <!--have to implement student unenroll from the course-->
+          <div id="departmentUpdateProfileFormContainer"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="DeleteEntry">
+      <div id="modalDelete">
+        <div id="modalDeleteContent">
+          <label>Are you sure you want to Delete?</label>
+          <button id="proceed">Proceed</button>
+          <button id="cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="dashboardWrapper">
+      <div id="modalDashboard">
+        <div id="modalDashboardContent">
+          <span class="close" id="dashboardClose">&times;</span>
+          <h2>Dashboard</h2>
+          <div id="enrollmentAndLoadWrapper">
+            <!-- <div id="enrollmentTrends"></div>
+            <div id="courseLoads"></div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../assets/js/adminProfileScript.js"></script>
+  </body>
+</html>

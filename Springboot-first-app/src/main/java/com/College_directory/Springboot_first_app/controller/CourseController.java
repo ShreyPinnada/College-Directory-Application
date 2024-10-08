@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/course")
 public class CourseController {
@@ -25,7 +26,7 @@ public class CourseController {
         return ResponseEntity.ok(course);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<Course> updateCourse(@PathVariable Long id, @RequestBody CourseUpdateDTO courseUpdateDTO) {
         Course course = courseImplement.updateCourse(id, courseUpdateDTO);
         return ResponseEntity.ok(course);

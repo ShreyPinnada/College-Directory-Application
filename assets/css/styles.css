@@ -1,0 +1,711 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/* login page */
+#login-container {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    height: 40vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #eeeeee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.loginInputBox {
+    font-size: 1.7rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px grey;
+    padding: 10px;
+}
+
+.loginInputBox::placeholder {
+    color: #888;
+    opacity: 1;
+}
+
+#roleSelector {
+    font-size: 1.7rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px grey;
+    margin: 10px;
+    padding: 10px;
+}
+
+#submitButton {
+    font-size: 1.7rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px grey;
+    padding: 10px;
+    margin: 30px 50px;
+    background-color: rgb(0, 255, 242);
+    cursor: pointer; /* Add pointer cursor */
+}
+
+#studentAndSearchWrapper {
+    display:flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 20px;
+}
+/*student profile*/
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(101, 147, 145);
+    padding:10px;
+    font-size: 1.7em;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px rgb(59, 125, 122);
+    color:white;
+    font-weight: bold;
+    margin: 20px;
+}
+
+#searchForm {
+    display: flex;
+}
+
+#searchForm input {
+    border:none;
+    margin:5px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    padding: 10px;
+}
+#searchForm input::placeholder {
+    color: #888;
+    opacity: 1;
+}
+#searchForm input:hover {
+    background-color: #dbdbdb;
+    transition:all 0.3s;
+}
+#searchForm button {
+    border:none;
+    margin:5px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    padding: 10px;
+    background-color:  rgb(0, 255, 242);
+    font-weight: bold;
+}
+#searchForm button:hover {
+    background-color:  rgb(54, 185, 179);
+    transition: all 0.3s;
+}
+
+/*login page sidebar for details*/
+
+/*student details*/
+.profileDetails {
+    margin: 20px;
+    left: 0;
+    top:80px;
+    padding:25px;
+    height:auto;
+    background-color: #eeeeee;
+    width:50vw;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px grey;
+
+}
+
+.profileDetails {
+    word-wrap: break-word;
+}
+
+.profileDetails img {
+    height:150px;
+    width:150px;
+    border-radius: 50%;
+    box-shadow: 5px 5px 5px grey;
+}
+
+#profileName {
+    font-size: 4vw;
+    margin-left: 20px;
+    max-width: 80%;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+#studentDetails #studentName {
+    font-size: 4vw;
+    margin-left: 20px;
+}
+
+.details label {
+    display: block;
+    font-size: 1.5vw;
+    padding: 10px;
+}
+
+/*faculty info*/
+
+#associatedFaculties {
+    margin: 20px;
+    padding: 25px;
+    background-color: #eeeeee;
+    width: 50vw;
+    min-height: 30vh;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px grey;
+    overflow-y: auto;
+}
+#associatedFaculties label {
+    font-size: 2vw;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.facultyList {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.facultyList span {
+    white-space: nowrap;
+    font-size: 1vw;
+    margin-right: 20px;
+}
+
+.facultyList .facultyName {
+    font-weight: bold;
+}
+
+/*student search bar results*/
+#searchResultsForm {
+    margin: 20px;
+    background-color: #eeeeee;
+    min-height: 70vh;
+    border-radius: 20px;
+    padding: 25px;
+    width:50vw;
+    box-shadow: 5px 5px 5px grey;
+    overflow-y: auto;
+}
+
+#searchResultsForm label{
+    font-size: 2vw;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.searchStudentList {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.searchStudentList span {
+    white-space: nowrap;
+    font-size: 1.5vw;
+    margin-right: 20px;
+}
+
+
+/*faculty page (for details i used same profileDetails class*/
+
+#handlingCourses {
+    margin: 20px;
+    padding: 25px;
+    background-color: #eeeeee;
+    width: 50vw;
+    min-height: 30vh;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px grey;
+    overflow-y: auto;  
+}
+
+
+#handlingCourses label {
+    font-size: 2vw;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+
+.courseSection {
+    margin-bottom: 20px;
+    background-color: #d6d6d6;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.studentCourseList {
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.studentCourseList span {
+    font-size: 1vw;
+    margin-right: 10px;
+}
+
+.studentCourseList button {
+    margin: 5px;
+}
+
+.studentDetails {
+    display: grid;
+    align-items: center;
+    padding: 10px 0;
+    white-space: nowrap;
+}
+
+.studentDetails span {
+    font-size: 1vw;
+    margin-right: 10px;
+}
+
+.studentDetails button {
+    margin-left: 5px;
+    background-color: rgb(69, 173, 152);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.1rem;
+}
+
+.addStudent {
+    margin-top: 10px; 
+    display: flex;
+    justify-content: flex-end; 
+}
+
+.addBtn {
+    background-color: rgb(69, 173, 152);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+#addStudentBtn, #addCourseBtn, #addDepartmentBtn{
+    font-size: 2px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+#addFacultyBtn {
+    font-size: 2px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+
+
+#facultyAndUpdateWrapper {
+    display:flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 20px;
+}
+
+#updateCourses {
+    margin: 20px;
+    background-color: #eeeeee;
+    min-height: 70vh;
+    border-radius: 20px;
+    padding: 25px;
+    width:50vw;
+    box-shadow: 5px 5px 5px grey;
+    overflow-y: auto;
+}
+
+#updateCourses label{
+    font-size: 2vw;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    padding-bottom: 20px;
+}
+
+#updateCourses input{
+    font-size: 1.2vw;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: block;
+    padding: 10px;
+    border:none;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px grey;
+}
+
+#updateCourses button {
+    font-size: 2vh;
+    margin-top: 20px;
+    background-color:  rgb(0, 255, 242);
+    padding:10px;
+    border:none;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px grey;
+}
+
+/*Administrator page*/
+
+#adminStudentList {
+    margin: 20px;
+    padding: 25px;
+    height: auto;
+    background-color: #eeeeee;
+    width: 50vw;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px grey;
+    overflow-y: auto;
+    position: relative;
+}
+
+#adminStudentList label{
+    font-size: 2vw;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+#adminStudentList span {
+    font-size: 1.5vw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#adminStudentList button{
+    background-color: rgb(69, 173, 152);
+    border-radius: 10px;
+    padding:10px;
+    font-size: 1.1rem;
+    margin:10px;
+}
+
+#adminFacultyList {
+    margin: 20px;
+    left: 0;
+    top:80px;
+    padding:25px;
+    height:auto;
+    background-color: #eeeeee;
+    width:50vw;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px grey;
+    overflow-y: auto;
+}
+
+#adminFacultyList label{
+    font-size: 2vw;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+#adminFacultyList span {
+    font-size: 1.5vw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#adminFacultyList button{
+    background-color: rgb(69, 173, 152);
+    border-radius: 10px;
+    padding:10px;
+    font-size: 1.1rem;
+    margin:10px;
+}
+
+#adminStudentAndFacultyWrapper {
+    display:flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 20px;
+}
+
+/* create student form pop up*/
+.createUserForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px; 
+  }
+  
+  .form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+.createUserForm input{
+    font-size: 1rem;
+    padding: 3px;
+    border-radius: 10px;
+    border:none;
+}
+
+.createUserForm button{
+    font-size: 1.5rem;
+    padding: 3px;
+    border-radius: 10px;
+    color:white;
+    background-color:rgb(25, 168, 94);
+}
+#modalStudent, #modalStudentUpdate, #modalFacultyUpdate, #modalCourse, #modalDepartment, #modalCourseUpdate, #modalDepartmentUpdate{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(105, 105, 105, 0.856); /* Fallback color */
+    background-color: rgba(143, 143, 143, 0.4); /* Black w/ opacity */
+}
+
+#modalStudentContent, #modalStudentUpdateContent, #modalFacultyUpdateContent, #modalCourseContent, #modalDepartmentContent, #modalCourseUpdateContent, #modalDepartmentUpdateContent{
+    background-color: #c3c3c3;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+#modalFaculty {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(105, 105, 105, 0.856); /* Fallback color */
+    background-color: rgba(143, 143, 143, 0.4); /* Black w/ opacity */
+}
+
+#modalFacultyContent {
+    background-color: #c3c3c3;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modalDelete{
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(105, 105, 105, 0.856);
+    background-color: rgba(143, 143, 143, 0.4); 
+}
+#modalDeleteContent{
+    display:flex;
+    flex-direction: column;
+    background-color: #c3c3c3;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 30%;
+}
+
+
+#modalDeleteContent label{
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding:10px;
+}
+
+#modalDeleteContent button{
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px;
+    border:none;
+    border-radius:10px;
+    margin:10px;
+}
+#proceed{
+    background-color: rgb(33, 149, 33);
+}
+
+#cancel
+{
+    background-color: rgb(255, 69, 69);
+}
+
+#adminCourseAndDepartmentWrapper {
+    display:flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 20px;
+}
+
+#courseList {
+    margin: 20px;
+    padding: 25px;
+    height: auto;
+    background-color: #eeeeee;
+    width: 50vw;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px grey;
+    overflow-y: auto;
+    position: relative;
+}
+
+#departmentList{
+    margin: 20px;
+    left: 0;
+    top: 80px;
+    padding: 25px;
+    height: auto;
+    background-color: #eeeeee;
+    width: 50vw;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px grey;
+    overflow-y: auto;
+}
+
+#courseList label, #departmentList label{
+    font-size: 2vw;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+#courseList span, #departmentList span {
+    font-size: 1.5vw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#courseList button, #departmentList button { 
+    background-color: rgb(69, 173, 152);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.1rem;
+    margin: 10px;
+}
+
+#modalDashboard {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalDashboardContent {
+    background-color: #f4f4f4;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#dashboardWrapper {
+    position: relative;
+    width: 100%;
+}
+
+#enrollmentAndLoadWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+#enrollmentTrends,
+#courseLoads {
+    flex: 1;
+    min-height: 300px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.myChart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#dashboardClose {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#dashboardClose:hover,
+#dashboardClose:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    #enrollmentAndLoadWrapper {
+        flex-direction: row;
+    }
+
+    #enrollmentTrends,
+    #courseLoads {
+        width: calc(50% - 10px);
+    }
+}

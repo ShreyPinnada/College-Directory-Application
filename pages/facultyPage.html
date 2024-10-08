@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faculty</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <div>Faculty</div>
+      <form id="searchForm"></form>
+    </div>
+    <div id="facultyAndUpdateWrapper">
+      <div id="faultyAndCoursesWrapper">
+        <div class="profileDetails" id="studentDetails">
+          <div class="profile">
+            <img src="../assets/images/image.png" alt="profile picture" />
+            <label id="profileName">Faculty Name</label>
+          </div>
+          <div class="details">
+            <label id="facultyUserId" type="text">User Id: userid</label>
+            <label id="facultyDepartmentName" type="text"
+              >Department Name:dept</label
+            >
+            <label id="facultyOfficeHours" type="text"
+              >Office Hours: 8 hrs</label
+            >
+          </div>
+        </div>
+        <div id="handlingCourses">
+          <label>Courses Handled</label>
+          <div id="courseContainer" class="courseSection">
+            <label>Course Name: Course 1</label>
+            <div class="studentCourseList">
+              <!--kept the same class for class list-->
+              <span class="courseDescription"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="updateCourses">
+        <label for="updateCourses">Update Details</label>
+        <form id="updateFacultyForm" action="submit">
+          <input
+            id="updateFacultyOfficeHours"
+            type="text"
+            placeholder="Update Office hours"
+          />
+          <input
+            id="updateFacultyEmail"
+            type="text"
+            placeholder="Update email"
+          />
+          <input
+            id="updateFacultyPhoneNumber"
+            type="text"
+            placeholder="Update phone number"
+          />
+          <button type="submit">Update</button>
+        </form>
+      </div>
+    </div>
+    <script src="../assets/js/facultyProfileScript.js"></script>
+  </body>
+</html>

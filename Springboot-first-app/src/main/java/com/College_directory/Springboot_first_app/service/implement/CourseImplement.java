@@ -79,23 +79,36 @@ public class CourseImplement implements CourseInterface {
     public Course updateCourse(Long id, CourseUpdateDTO courseUpdateDTO) {
         Course existingCourse = courseRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Course not found with id: " + id));
-        existingCourse.setTitle(courseUpdateDTO.getTitle());
-        existingCourse.setDescription(courseUpdateDTO.getDescription());
 
-        Department department = departmentRepository.findById(courseUpdateDTO.getDepartmentId())
-                .orElseThrow(() -> new IllegalArgumentException("Department not found with id: " + courseUpdateDTO.getDepartmentId()));
-        existingCourse.setDepartment(department);
+        if (courseUpdateDTO.getTitle() != null && !courseUpdateDTO.getTitle().isEmpty()) {
+            existingCourse.setTitle(courseUpdateDTO.getTitle());
+        }
 
-        User facultyUser = userRepository.findById(courseUpdateDTO.getFacultyId())
-                .orElseThrow(() -> new IllegalArgumentException("Faculty not found with id: " + courseUpdateDTO.getFacultyId()));
-        FacultyProfile facultyProfile = facultyProfileRepository.getByUser(facultyUser);
-        existingCourse.setFaculty(facultyProfile);
+        if (courseUpdateDTO.getDescription() != null && !courseUpdateDTO.getDescription().isEmpty()) {
+            existingCourse.setDescription(courseUpdateDTO.getDescription());
+        }
+
+        if (courseUpdateDTO.getDepartmentId() != null) {
+            Department department = departmentRepository.findById(courseUpdateDTO.getDepartmentId())
+                    .orElseThrow(() -> new IllegalArgumentException("Department not found with id: " + courseUpdateDTO.getDepartmentId()));
+            existingCourse.setDepartment(department);
+        }
+
+        if (courseUpdateDTO.getFacultyId() != null) {
+            User facultyUser = userRepository.findById(courseUpdateDTO.getFacultyId())
+                    .orElseThrow(() -> new IllegalArgumentException("Faculty not found with id: " + courseUpdateDTO.getFacultyId()));
+            FacultyProfile facultyProfile = facultyProfileRepository.getByUser(facultyUser);
+            existingCourse.setFaculty(facultyProfile);
+        }
+
         return courseRepository.save(existingCourse);
     }
 
     @Override
     public boolean deleteCourse(Long id) {
-        return false;
+        Course existingCourse = courseRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User with id "+ id + " not found"));
+        courseRepository.delete(existingCourse);
+        return true;
     }
 }
 

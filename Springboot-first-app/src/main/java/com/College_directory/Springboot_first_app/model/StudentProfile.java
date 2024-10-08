@@ -1,7 +1,7 @@
 package com.College_directory.Springboot_first_app.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+        import lombok.Data;
 
 @Data
 @Entity

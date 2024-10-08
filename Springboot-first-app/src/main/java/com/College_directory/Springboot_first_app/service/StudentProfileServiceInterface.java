@@ -1,6 +1,8 @@
 package com.College_directory.Springboot_first_app.service;
 
+import com.College_directory.Springboot_first_app.dto.user.FacultyProfileDTO;
 import com.College_directory.Springboot_first_app.dto.user.StudentProfileDTO;
+import com.College_directory.Springboot_first_app.model.FacultyProfile;
 import com.College_directory.Springboot_first_app.model.StudentProfile;
 
 import java.util.List;
@@ -37,5 +39,6 @@ public interface StudentProfileServiceInterface {
 //
 //    // Other
 //    //List<Course> getStudentCourses(Long userId);
-//    //List<FacultyProfile> getStudentAdvisors(Long userId);
+//    List<FacultyProfile> getStudentAdvisors(Long userId);
+       List<FacultyProfileDTO> getFacultiesByStudentId(Long studentId);
 }

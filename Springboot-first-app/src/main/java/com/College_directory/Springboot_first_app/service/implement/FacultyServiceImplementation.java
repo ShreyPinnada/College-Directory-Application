@@ -1,5 +1,6 @@
 package com.College_directory.Springboot_first_app.service.implement;
 
+import com.College_directory.Springboot_first_app.dto.user.FacultyCreateProfileDTO;
 import com.College_directory.Springboot_first_app.dto.user.FacultyProfileDTO;
 import com.College_directory.Springboot_first_app.model.Department;
 import com.College_directory.Springboot_first_app.model.FacultyProfile;
@@ -25,21 +26,21 @@ public class FacultyServiceImplementation implements FacultyProfileServiceInterf
     private DepartmentRepository departmentRepository;
 
     @Override
-    public FacultyProfile createFacultyProfile(Long userId, FacultyProfileDTO facultyProfileDTO) {
+    public FacultyProfile createFacultyProfile(Long userId, FacultyCreateProfileDTO facultyCreateProfileDTO) {
         User existingUser = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + userId));
         FacultyProfile existingFaculty = facultyProfileRepository.getByUser(existingUser);
         if(existingFaculty != null){
             throw new IllegalArgumentException("Faculty with id " + userId + " already exists");
         }
-        Department department = departmentRepository.findById(facultyProfileDTO.getDepartmentId())
-                .orElseThrow(() -> new IllegalArgumentException("Department with id " + facultyProfileDTO.getDepartmentId() + " does not exist"));
+        Department department = departmentRepository.findById(facultyCreateProfileDTO.getDepartmentId())
+                .orElseThrow(() -> new IllegalArgumentException("Department with id " + facultyCreateProfileDTO.getDepartmentId() + " does not exist"));
 
         FacultyProfile newFaculty = new FacultyProfile();
         newFaculty.setUser(existingUser);
-        newFaculty.setPhoto(facultyProfileDTO.getPhoto());
+        newFaculty.setPhoto(facultyCreateProfileDTO.getPhoto());
         newFaculty.setDepartment(department);
-        newFaculty.setOfficeHours(facultyProfileDTO.getOfficeHours());
+        newFaculty.setOfficeHours(facultyCreateProfileDTO.getOfficeHours());
         return facultyProfileRepository.save(newFaculty);
     }
 
