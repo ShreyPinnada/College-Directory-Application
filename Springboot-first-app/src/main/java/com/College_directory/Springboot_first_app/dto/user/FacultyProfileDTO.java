@@ -8,4 +8,6 @@ public class FacultyProfileDTO extends UserDTO {
     private String photo;
     private Long departmentId;
     private String officeHours;
+    private String facultyName;
+    private String departmentName;
 }

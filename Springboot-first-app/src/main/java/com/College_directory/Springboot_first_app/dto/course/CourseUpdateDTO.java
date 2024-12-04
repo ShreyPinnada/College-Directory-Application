@@ -7,15 +7,15 @@ import lombok.Data;
 
 @Data
 public class CourseUpdateDTO {
-    @NotBlank
+
     @Size(max = 100)
     private String title;
 
     private String description;
 
-    @NotNull
+
     private Long departmentId;
 
-    @NotNull
+
     private Long facultyId;
 }

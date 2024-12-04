@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <div>Student</div>
+      <form id="searchForm">
+        <input type="text" id="year" placeholder="Year" />
+        <input type="text" id="department" placeholder="Department ID" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    <div id="studentAndSearchWrapper">
+      <div id="studentAndAssociatedFacultyWrapper">
+        <div class="profileDetails" id="studentDetails">
+          <div class="profile">
+            <img src="../assets/images/image.png" alt="profile picture" />
+            <label id="profileName">Student Name</label>
+          </div>
+          <div class="details">
+            <label type="text" id="studentUserId">User Id: userid</label>
+            <label type="text" id="studentDeparmentId"
+              >Department Id: deptid</label
+            >
+            <label type="text" id="studentYear">Academic Year: 2024</label>
+          </div>
+        </div>
+        <div id="associatedFaculties">
+          <label>Associated Faculties</label>
+          <div id="facultyListContainer" class="facultyList">
+            <span class="facultyName">Faculty Name</span>
+            <span class="facultyEmail">faculty.email@example.com</span>
+            <span class="facultyPhone">123-456-7890</span>
+            <span class="departmentName">dept1</span>
+          </div>
+        </div>
+      </div>
+      <div id="searchResultsForm">
+        <label>Search Results</label>
+        <div class="searchStudentList">
+          <span class="studentName">Student Name</span>
+          <span class="email">Student Email</span>
+          <span class="phone no">Phone no.</span>
+          <span class="department name">dept name</span>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/js/studentProfileScript.js"></script>
+  </body>
+</html>

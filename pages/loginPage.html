@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>College Directory System</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body>
+    <div id="login-container">
+      <input
+        class="loginInputBox"
+        id="usernameInput"
+        type="text"
+        placeholder="Username"
+        required
+      /><br />
+      <input
+        class="loginInputBox"
+        id="passwordInput"
+        type="password"
+        placeholder="Password"
+        required
+      /><br />
+      <select id="roleSelector" name="role" required>
+        <option value="Student">Student</option>
+        <option value="Faculty">Faculty</option>
+        <option value="Administrator">Administrator</option></select
+      ><br />
+      <button id="submitButton" onclick="performLogin()">Submit</button>
+    </div>
+
+    <script src="../assets/js/loginScript.js"></script>
+  </body>
+</html>

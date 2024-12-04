@@ -1,5 +1,6 @@
 package com.College_directory.Springboot_first_app.service;
 
+import com.College_directory.Springboot_first_app.dto.user.FacultyCreateProfileDTO;
 import com.College_directory.Springboot_first_app.dto.user.FacultyProfileDTO;
 import com.College_directory.Springboot_first_app.model.Course;
 import com.College_directory.Springboot_first_app.model.FacultyProfile;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public interface FacultyProfileServiceInterface {
     // Create
-    FacultyProfile createFacultyProfile(Long userId, FacultyProfileDTO facultyProfileDTO);
+    FacultyProfile createFacultyProfile(Long userId, FacultyCreateProfileDTO facultyCreateProfileDTO);
 
     // Read
     FacultyProfile getFacultyProfileById(Long userId);

@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class DepartmentUpdateDTO {
-    @NotBlank
     @Size(max = 100)
     private String name;
     private String description;

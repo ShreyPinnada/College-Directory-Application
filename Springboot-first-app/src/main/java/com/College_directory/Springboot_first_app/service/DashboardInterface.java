@@ -1,10 +1,12 @@
-//package com.College_directory.Springboot_first_app.service;
-//
-//import java.util.Map;
-//
-//public interface DashboardInterface {
-//    Map<String, Integer> getStudentEnrollmentTrends();
-//    Map<String, Integer> getFacultyCourseCounts();
-//    Map<String, Integer> getDepartmentStudentCounts();
-//    Map<String, Double> getCourseProfessorRatios();
-//}
+package com.College_directory.Springboot_first_app.service;
+
+import com.College_directory.Springboot_first_app.dto.dashboard.EnrollmentTrendDTO;
+import com.College_directory.Springboot_first_app.dto.dashboard.FacultyCourseLoadDTO;
+
+import java.util.List;
+
+public interface DashboardInterface {
+    List<EnrollmentTrendDTO> getEnrollmentTrends();
+
+List<FacultyCourseLoadDTO> getFacultyCourseLoads();
+}
