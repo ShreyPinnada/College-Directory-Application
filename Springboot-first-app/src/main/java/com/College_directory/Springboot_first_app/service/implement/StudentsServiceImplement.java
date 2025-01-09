@@ -1,18 +1,23 @@
 package com.College_directory.Springboot_first_app.service.implement;
 
-import com.College_directory.Springboot_first_app.dto.user.FacultyProfileDTO;
-import com.College_directory.Springboot_first_app.dto.user.StudentProfileDTO;
-import com.College_directory.Springboot_first_app.model.*;
-import com.College_directory.Springboot_first_app.repository.*;
-import com.College_directory.Springboot_first_app.service.StudentProfileServiceInterface;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.College_directory.Springboot_first_app.dto.user.FacultyProfileDTO;
+import com.College_directory.Springboot_first_app.dto.user.StudentProfileDTO;
+import com.College_directory.Springboot_first_app.model.Department;
+import com.College_directory.Springboot_first_app.model.Enrollment;
+import com.College_directory.Springboot_first_app.model.StudentProfile;
+import com.College_directory.Springboot_first_app.model.User;
+import com.College_directory.Springboot_first_app.repository.DepartmentRepository;
+import com.College_directory.Springboot_first_app.repository.EnrollmentRepository;
+import com.College_directory.Springboot_first_app.repository.FacultyProfileRepository;
+import com.College_directory.Springboot_first_app.repository.StudentProfileRepository;
+import com.College_directory.Springboot_first_app.repository.UserRepository;
+import com.College_directory.Springboot_first_app.service.StudentProfileServiceInterface;
 
 @Service
 public class StudentsServiceImplement implements StudentProfileServiceInterface {
@@ -27,17 +32,10 @@ public class StudentsServiceImplement implements StudentProfileServiceInterface 
     private StudentProfileRepository studentProfileRepository;
 
     @Autowired
-    private EnrollmentRepository enrollmentRepository;
-
-    @Autowired
     private FacultyProfileRepository facultyProfileRepository;
 
     @Autowired
-    private CourseRepository courseRepository;
-    @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
-    private LocalContainerEntityManagerFactoryBean entityManagerFactory;
+    private EnrollmentRepository enrollmentRepository;
 
     @Override
     public StudentProfile createStudentProfile(Long userId, StudentProfileDTO studentProfileDTO) {
@@ -49,7 +47,8 @@ public class StudentsServiceImplement implements StudentProfileServiceInterface 
             throw new IllegalArgumentException("Student with id " + userId + " already exists");
         }
         Department department = departmentRepository.findById(studentProfileDTO.getDepartmentId())
-                .orElseThrow(() -> new IllegalArgumentException("Department with id " + studentProfileDTO.getDepartmentId() + " does not exist"));
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Department with id " + studentProfileDTO.getDepartmentId() + " does not exist"));
         StudentProfile newStudent = new StudentProfile();
         newStudent.setUser(existingUser);
         newStudent.setPhoto(studentProfileDTO.getPhoto());
@@ -86,7 +85,8 @@ public class StudentsServiceImplement implements StudentProfileServiceInterface 
         }
         if (studentProfileDTO.getDepartmentId() != null) {
             Department department = departmentRepository.findById(studentProfileDTO.getDepartmentId())
-                    .orElseThrow(() -> new IllegalArgumentException("Department with id " + studentProfileDTO.getDepartmentId() + " does not exist"));
+                    .orElseThrow(() -> new IllegalArgumentException(
+                            "Department with id " + studentProfileDTO.getDepartmentId() + " does not exist"));
             existingStudentProfile.setDepartment(department);
         }
         if (studentProfileDTO.getYear() != null) {
@@ -97,8 +97,19 @@ public class StudentsServiceImplement implements StudentProfileServiceInterface 
 
     @Override
     public boolean deleteStudentProfile(Long userId) {
-        StudentProfile studentProfile = studentProfileRepository.getById(userId);
-        studentProfileRepository.delete(studentProfile);
+        List<Enrollment> enrollments = enrollmentRepository.findAllByStudent_UserId(userId);
+        if (!enrollments.isEmpty()) {
+            enrollmentRepository.deleteAll(enrollments);
+        }
+
+        // Delete the student profile
+        if (studentProfileRepository.existsById(userId)) {
+            studentProfileRepository.deleteById(userId);
+        }
+
+        // Delete the user from the appuser table
+        userRepository.deleteById(userId);
+
         return true;
     }
 

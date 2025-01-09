@@ -1,12 +1,10 @@
 package com.College_directory.Springboot_first_app.service;
 
+import java.util.List;
+
 import com.College_directory.Springboot_first_app.dto.course.CourseCreateDTO;
-import com.College_directory.Springboot_first_app.dto.course.CourseDTO;
 import com.College_directory.Springboot_first_app.dto.course.CourseUpdateDTO;
 import com.College_directory.Springboot_first_app.model.Course;
-import com.College_directory.Springboot_first_app.model.StudentProfile;
-
-import java.util.List;
 
 public interface CourseInterface {
     // Create
@@ -14,8 +12,11 @@ public interface CourseInterface {
 
     // Read
     Course getCourseById(Long id);
+
     List<Course> getAllCourses();
+
     List<Course> getCoursesByDepartment(Long departmentId);
+
     List<Course> getCoursesByFaculty(Long facultyId);
 
     // Update
@@ -25,5 +26,5 @@ public interface CourseInterface {
     boolean deleteCourse(Long id);
 
     // Other
-   // List<StudentProfile> getEnrolledStudents(Long courseId);
+    // List<StudentProfile> getEnrolledStudents(Long courseId);
 }

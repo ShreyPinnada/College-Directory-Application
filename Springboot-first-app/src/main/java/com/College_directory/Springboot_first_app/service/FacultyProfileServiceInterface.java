@@ -1,11 +1,10 @@
 package com.College_directory.Springboot_first_app.service;
 
+import java.util.List;
+
 import com.College_directory.Springboot_first_app.dto.user.FacultyCreateProfileDTO;
 import com.College_directory.Springboot_first_app.dto.user.FacultyProfileDTO;
-import com.College_directory.Springboot_first_app.model.Course;
 import com.College_directory.Springboot_first_app.model.FacultyProfile;
-
-import java.util.List;
 
 public interface FacultyProfileServiceInterface {
     // Create
@@ -13,6 +12,7 @@ public interface FacultyProfileServiceInterface {
 
     // Read
     FacultyProfile getFacultyProfileById(Long userId);
+
     List<FacultyProfile> getAllFacultyProfiles();
 
     // Update
@@ -21,9 +21,7 @@ public interface FacultyProfileServiceInterface {
     // Delete
     boolean deleteFacultyProfile(Long userId);
 
-
-
     // Other
-//    List<Course> getFacultyClasses(Long userId);
-//    FacultyProfile updateOfficeHours(Long userId, String officeHours);
+    // List<Course> getFacultyClasses(Long userId);
+    // FacultyProfile updateOfficeHours(Long userId, String officeHours);
 }

@@ -1,5 +1,5 @@
 body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Segoe UI", Tahoma, sans-serif;
 }
 /* login page */
 #login-container {
@@ -14,7 +14,7 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #eeeeee;
+    background-color: #b5c9ff;
     border-radius: 30px;
     box-shadow: 25px 25px 15px grey;
 }
@@ -237,11 +237,11 @@ body{
 #handlingCourses {
     margin: 20px;
     padding: 25px;
-    background-color: #eeeeee;
+    background-color: #84a0ff;
     width: 50vw;
     min-height: 30vh;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px grey;
+    border-radius: 30px;
+    box-shadow: 15px 15px 15px grey;
     overflow-y: auto;  
 }
 
@@ -256,9 +256,9 @@ body{
 
 .courseSection {
     margin-bottom: 20px;
-    background-color: #d6d6d6;
+    background-color: #b3caff;
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 30px;
 }
 
 .studentCourseList {
@@ -334,12 +334,12 @@ body{
 
 #updateCourses {
     margin: 20px;
-    background-color: #eeeeee;
+    background-color: #85dbff;
     min-height: 70vh;
-    border-radius: 20px;
+    border-radius: 30px;
     padding: 25px;
     width:50vw;
-    box-shadow: 5px 5px 5px grey;
+    box-shadow: 15px 15px 15px grey;
     overflow-y: auto;
 }
 
@@ -365,10 +365,10 @@ body{
 #updateCourses button {
     font-size: 2vh;
     margin-top: 20px;
-    background-color:  rgb(0, 255, 242);
-    padding:10px;
-    border:none;
-    border-radius: 10px;
+    background-color: #00b4ff;
+    padding: 10px;
+    border: none;
+    border-radius: 30px;
     box-shadow: 5px 5px 5px grey;
 }
 
@@ -378,9 +378,9 @@ body{
     margin: 20px;
     padding: 25px;
     height: auto;
-    background-color: #eeeeee;
+    background-color: #aec1ff;
     width: 50vw;
-    border-radius: 20px;
+    border-radius: 30px;
     box-shadow: 5px 5px 5px grey;
     overflow-y: auto;
     position: relative;
@@ -401,11 +401,13 @@ body{
 }
 
 #adminStudentList button{
-    background-color: rgb(69, 173, 152);
-    border-radius: 10px;
+    background-color: rgb(20, 137, 255);
+    border-radius: 30px;
     padding:10px;
     font-size: 1.1rem;
     margin:10px;
+    border: none;
+    box-shadow: 5px 5px 5px grey;
 }
 
 #adminFacultyList {
@@ -414,9 +416,9 @@ body{
     top:80px;
     padding:25px;
     height:auto;
-    background-color: #eeeeee;
+    background-color:#9bffcb;
     width:50vw;
-    border-radius: 20px;
+    border-radius: 30px;
     box-shadow: 5px 5px 5px grey;
     overflow-y: auto;
 }
@@ -435,11 +437,13 @@ body{
 }
 
 #adminFacultyList button{
-    background-color: rgb(69, 173, 152);
-    border-radius: 10px;
+    background-color: rgb(0, 170, 136);
+    border-radius: 30px;
     padding:10px;
     font-size: 1.1rem;
     margin:10px;
+    box-shadow: 5px 5px 5px grey;
+    border: none;
 }
 
 #adminStudentAndFacultyWrapper {
@@ -461,19 +465,19 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
   }
 .createUserForm input{
     font-size: 1rem;
-    padding: 3px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 30px;
     border:none;
 }
 
 .createUserForm button{
     font-size: 1.5rem;
     padding: 3px;
-    border-radius: 10px;
+    border-radius: 30px;
     color:white;
     background-color:rgb(25, 168, 94);
 }
@@ -486,8 +490,8 @@ body{
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(105, 105, 105, 0.856); /* Fallback color */
-    background-color: rgba(143, 143, 143, 0.4); /* Black w/ opacity */
+    background-color: rgba(105, 105, 105, 0.874); /* Fallback color */
+    background-color: rgba(143, 143, 143, 0.795); /* Black w/ opacity */
 }
 
 #modalStudentContent, #modalStudentUpdateContent, #modalFacultyUpdateContent, #modalCourseContent, #modalDepartmentContent, #modalCourseUpdateContent, #modalDepartmentUpdateContent{
@@ -495,8 +499,19 @@ body{
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    border-radius: 10px;
+    border-radius: 30px;
     width: 80%; /* Could be more or less, depending on screen size */
+}
+#modalStudentContent {
+    background-color: #abbfff   ;
+}
+
+#modalCourseContent {
+    background-color: rgb(255, 255, 171);
+}
+
+#modalDepartmentContent {
+    background-color: rgb(255, 162, 162);
 }
 
 #modalFaculty {
@@ -513,7 +528,7 @@ body{
 }
 
 #modalFacultyContent {
-    background-color: #c3c3c3;
+    background-color:#9bffcb;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
@@ -522,7 +537,7 @@ body{
 }
 
 .close {
-    color: #aaa;
+    color: #0c0c0c;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -550,11 +565,11 @@ body{
 #modalDeleteContent{
     display:flex;
     flex-direction: column;
-    background-color: #c3c3c3;
+    background-color: #c4dfff;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    border-radius: 10px;
+    border-radius: 30px;
     width: 30%;
 }
 
@@ -570,16 +585,16 @@ body{
     font-weight: bold;
     padding: 10px;
     border:none;
-    border-radius:10px;
+    border-radius:30px;
     margin:10px;
 }
 #proceed{
-    background-color: rgb(33, 149, 33);
+    background-color: rgb(114, 220, 114);
 }
 
 #cancel
 {
-    background-color: rgb(255, 69, 69);
+    background-color: rgb(223, 117, 117);
 }
 
 #adminCourseAndDepartmentWrapper {
@@ -593,9 +608,9 @@ body{
     margin: 20px;
     padding: 25px;
     height: auto;
-    background-color: #eeeeee;
+    background-color: #fffba6;
     width: 50vw;
-    border-radius: 20px;
+    border-radius: 30px;
     box-shadow: 5px 5px 5px grey;
     overflow-y: auto;
     position: relative;
@@ -607,7 +622,7 @@ body{
     top: 80px;
     padding: 25px;
     height: auto;
-    background-color: #eeeeee;
+    background-color: #ffb3b3;
     width: 50vw;
     border-radius: 20px;
     box-shadow: 5px 5px 5px grey;
@@ -627,12 +642,23 @@ body{
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-#courseList button, #departmentList button { 
-    background-color: rgb(69, 173, 152);
-    border-radius: 10px;
+#courseList button { 
+    background-color: rgb(255, 235, 55);
+    border-radius: 30px;
     padding: 10px;
     font-size: 1.1rem;
     margin: 10px;
+    box-shadow: 5px 5px 5px grey;
+    border:none;
+}
+
+#departmentList button{
+    background-color: rgb(255, 99, 99);
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 1.1rem;
+    margin: 10px;
+    box-shadow: 5px 5px 5px grey;
 }
 
 #modalDashboard {
@@ -648,13 +674,13 @@ body{
 }
 
 #modalDashboardContent {
-    background-color: #f4f4f4;
+    background-color: #a5d7ff;
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 90%;
     max-width: 1200px;
-    border-radius: 10px;
+    border-radius: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -676,7 +702,7 @@ body{
     min-height: 300px;
     background-color: #ffffff;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -686,7 +712,7 @@ body{
 }
 
 #dashboardClose {
-    color: #aaa;
+    color: #222222;
     float: right;
     font-size: 28px;
     font-weight: bold;

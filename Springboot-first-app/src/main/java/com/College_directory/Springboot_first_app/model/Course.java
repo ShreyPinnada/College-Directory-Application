@@ -1,6 +1,13 @@
 package com.College_directory.Springboot_first_app.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
@@ -24,6 +31,6 @@ public class Course {
     @JoinColumn(name = "faculty_id", nullable = false)
     private FacultyProfile faculty;
 
-//    @OneToMany(mappedBy = "course")
-//    private List<Enrollment> enrollments;
+    // @OneToMany(mappedBy = "course")
+    // private List<Enrollment> enrollments;
 }

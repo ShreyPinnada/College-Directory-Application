@@ -1,15 +1,23 @@
 package com.College_directory.Springboot_first_app.controller;
 
-import com.College_directory.Springboot_first_app.dto.helpers.PasswordChangeDTO;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.College_directory.Springboot_first_app.dto.user.UserCreateDTO;
 import com.College_directory.Springboot_first_app.dto.user.UserUpdateDTO;
 import com.College_directory.Springboot_first_app.model.User;
 import com.College_directory.Springboot_first_app.service.UserServiceInterface;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -50,16 +58,6 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
-    }
-
-    @PutMapping("/{id}/password")
-    public ResponseEntity<String> changePassword(@PathVariable Long id, @RequestBody PasswordChangeDTO passwordChangeDTO) {
-        boolean result = userService.changePassword(id, passwordChangeDTO.getOldPassword(), passwordChangeDTO.getNewPassword());
-        if (result) {
-            return ResponseEntity.ok("Password changed successfully");
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password change failed");
-        }
     }
 
     @DeleteMapping("/{id}")

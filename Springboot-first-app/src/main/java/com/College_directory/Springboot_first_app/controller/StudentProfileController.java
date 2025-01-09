@@ -1,14 +1,23 @@
 package com.College_directory.Springboot_first_app.controller;
 
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.College_directory.Springboot_first_app.dto.user.FacultyProfileDTO;
 import com.College_directory.Springboot_first_app.dto.user.StudentProfileDTO;
 import com.College_directory.Springboot_first_app.model.StudentProfile;
 import com.College_directory.Springboot_first_app.service.StudentProfileServiceInterface;
 import com.College_directory.Springboot_first_app.service.implement.StudentsServiceImplement;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -16,15 +25,15 @@ import java.util.List;
 public class StudentProfileController {
 
     private final StudentProfileServiceInterface studentService;
-    private final StudentsServiceImplement studentsServiceImplement;
 
-    public StudentProfileController(StudentProfileServiceInterface studentService, StudentsServiceImplement studentsServiceImplement) {
+    public StudentProfileController(StudentProfileServiceInterface studentService,
+            StudentsServiceImplement studentsServiceImplement) {
         this.studentService = studentService;
-        this.studentsServiceImplement = studentsServiceImplement;
     }
 
     @PostMapping("/create/{userId}")
-    public ResponseEntity<StudentProfile> createStudentProfile(@PathVariable Long userId, @RequestBody StudentProfileDTO studentProfileDTO) {
+    public ResponseEntity<StudentProfile> createStudentProfile(@PathVariable Long userId,
+            @RequestBody StudentProfileDTO studentProfileDTO) {
         StudentProfile studentProfile = studentService.createStudentProfile(userId, studentProfileDTO);
         return ResponseEntity.ok(studentProfile);
     }
@@ -42,7 +51,8 @@ public class StudentProfileController {
     }
 
     @PatchMapping("{userId}")
-    public ResponseEntity<StudentProfile> updateStudentProfile(@PathVariable Long userId, @RequestBody StudentProfileDTO studentProfileDTO) {
+    public ResponseEntity<StudentProfile> updateStudentProfile(@PathVariable Long userId,
+            @RequestBody StudentProfileDTO studentProfileDTO) {
         StudentProfile studentProfile = studentService.updateStudentProfile(userId, studentProfileDTO);
         return ResponseEntity.ok(studentProfile);
     }
@@ -64,7 +74,8 @@ public class StudentProfileController {
     }
 
     @GetMapping("/{year}/{department}")
-    public ResponseEntity<List<StudentProfile>> getStudentsByYear(@PathVariable String year, @PathVariable Long department) {
+    public ResponseEntity<List<StudentProfile>> getStudentsByYear(@PathVariable String year,
+            @PathVariable Long department) {
         List<StudentProfile> students = studentService.searchStudents(department, year);
         return ResponseEntity.ok(students);
     }

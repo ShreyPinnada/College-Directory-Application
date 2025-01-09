@@ -678,24 +678,25 @@ async function deleteEntry(button) {
           throw new Error("Error while deleting student data");
         }
 
-        response = await fetch(`http://localhost:8080/users/${userId}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        // response = await fetch(`http://localhost:8080/users/${userId}`, {
+        //   method: "DELETE",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        // });
 
-        if (!response.ok) {
-          throw new Error("Error while deleting user data");
-        }
+        // if (!response.ok) {
+        //   throw new Error("Error while deleting user data");
+        // }
+        //COZ I HAVE A DELETE CASCADE SO REMOVEING AND CHECKING IF NO ERROR
 
         window.alert(`Student with ID ${userId} deleted successfully.`);
         modalDelete.style.display = "none";
+        await getAllStudents();
       };
       document.getElementById("cancel").onclick = function () {
         modalDelete.style.display = "none";
       };
-      await getAllStudents();
     } catch (error) {
       console.error(error);
       alert("An error occurred while deleting. Please try again.");
@@ -729,13 +730,13 @@ async function deleteEntry(button) {
           throw new Error("Error while deleting user data");
         }
 
-        window.alert(`Student with ID ${userId} deleted successfully.`);
+        window.alert(`Faculty with ID ${userId} deleted successfully.`);
         modalDelete.style.display = "none";
+        await getAllFaculties();
       };
       document.getElementById("cancel").onclick = function () {
         modalDelete.style.display = "none";
       };
-      await getAllFaculties();
     } catch (error) {
       console.error(error);
       alert("An error occurred while deleting. Please try again.");

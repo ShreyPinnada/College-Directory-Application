@@ -1,17 +1,16 @@
 package com.College_directory.Springboot_first_app.service.implement;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.College_directory.Springboot_first_app.dto.user.UserCreateDTO;
 import com.College_directory.Springboot_first_app.dto.user.UserUpdateDTO;
 import com.College_directory.Springboot_first_app.model.User;
 import com.College_directory.Springboot_first_app.repository.UserRepository;
 import com.College_directory.Springboot_first_app.service.UserServiceInterface;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import javax.swing.text.html.Option;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImplement implements UserServiceInterface {
@@ -19,8 +18,8 @@ public class UserServiceImplement implements UserServiceInterface {
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+    // @Autowired
+    // private PasswordEncoder passwordEncoder;
 
     @Override
     public User createUser(UserCreateDTO userCreateDTO) {
@@ -66,17 +65,17 @@ public class UserServiceImplement implements UserServiceInterface {
 
     @Override
     public User getUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found with id: " + id));
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + id));
         return user;
     }
 
     @Override
     public User getUserByUsername(String username) {
         Optional<User> optionalUser = userRepository.findByUsername(username);
-        return optionalUser.orElseThrow(() ->
-                new IllegalArgumentException("User with username " + username + " does not exist"));
+        return optionalUser
+                .orElseThrow(() -> new IllegalArgumentException("User with username " + username + " does not exist"));
     }
-
 
     @Override
     public List<User> getAllUsers() {
@@ -91,7 +90,7 @@ public class UserServiceImplement implements UserServiceInterface {
             // If the old password doesn't match, return false or throw an exception
             throw new IllegalArgumentException("Old password is incorrect");
         }
-//      user.setPassword(passwordEncoder.encode(newPassword));
+        // user.setPassword(passwordEncoder.encode(newPassword));
         user.setPassword(newPassword);
         userRepository.save(user);
         return true;
@@ -100,7 +99,7 @@ public class UserServiceImplement implements UserServiceInterface {
     @Override
     public boolean deleteUser(Long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("User with id "+ id + " not found"));
+                .orElseThrow(() -> new IllegalArgumentException("User with id " + id + " not found"));
         userRepository.delete(user);
         return true;
     }
